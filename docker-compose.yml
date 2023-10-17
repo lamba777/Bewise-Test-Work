@@ -1,0 +1,35 @@
+version: '3.9'
+
+volumes:
+  pgdata:
+    driver: local
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_container
+    env_file:
+      - .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5400:5432"
+
+  migrate_service:
+    image: quiz_app
+    depends_on:
+      - postgres
+    command: python manage.py migrate
+
+  my_app:
+    image: quiz_app
+    container_name: quiz_container
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    command: python manage.py runserver 0.0.0.0:8000
