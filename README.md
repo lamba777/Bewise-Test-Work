@@ -11,7 +11,7 @@
 
 ## Технологии
 - [Docker](https://www.docker.com/)
-- [Django4](https://docs.djangoproject.com/en/4.2/releases/4.0/)
+- [Django-Rest-Framework](https://www.django-rest-framework.org/)
 
 ## Установка
 Для начала нам нужно установить Docker, если он уже установлен на вашем компьютере - проигнорируйте следующую команду:
